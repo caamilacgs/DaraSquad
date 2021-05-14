@@ -20,9 +20,9 @@ public class Cliente {
     private String cpf;
     private String email;
 
-    @ManyToMany                                                         //Define a relação com a tabela PRODUTO
+    @ManyToMany (cascade = CascadeType.ALL)                              //Define a relação com a tabela PRODUTO
     @JoinTable(name = "TB_WISHLIST",                                    //Define o nome da tabela a ser criada
-            joinColumns = @JoinColumn(name = "Clienteid"),              //Define a coluna Clienteid onde a enditade "Cliente" é a dona desssa FK
+            joinColumns = @JoinColumn(name = "Clienteid"),            //Define a coluna Clienteid onde a enditade "Cliente" é a dona desssa FK
             inverseJoinColumns = @JoinColumn(name = "Produtoid"))      //Define a coluna Produtoid onde a entidade "Produto" é a dona desssa FK
 
     private List<Produto> Produto = new ArrayList<>(); //cria lista para produtos

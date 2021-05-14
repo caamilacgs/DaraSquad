@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Optional;
 
 
 @Entity //Informa que se trata de uma entidade;
@@ -13,11 +15,9 @@ public class Wishlist {
     //id do produto gerado automaticamente e autoincrementado;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnore //Define que o Json não o retorne na consulta;
     private long idWishlist;
 
     @NotNull //Define que o Clienteid não pode ser nulo
-    @JsonIgnore //não aparecer na consulta
     @Column(name = "Clienteid")
     private Long idCliente;
 
@@ -25,13 +25,13 @@ public class Wishlist {
     @Column(name = "Produtoid")
     private Long idProduto;
 
-    public Wishlist() {   //Construtor vazio;
-    }
-
-    public Wishlist(Long idWishlist, Long idCliente) {   //Construtor para definir que a Wishlist não pode ser criada apenas com idCliente ou apenas idProduto;
-        this.idWishlist = idWishlist;
+    public Wishlist(){}
+    public Wishlist(long idCliente, long idProduto) {
+        this.idProduto = idProduto;
         this.idCliente = idCliente;
     }
+
+
 
     //GETTERS E SETTERS
 

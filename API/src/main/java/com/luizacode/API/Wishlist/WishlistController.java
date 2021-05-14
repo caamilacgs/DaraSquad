@@ -1,38 +1,45 @@
 package com.luizacode.API.Wishlist;
 
+
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-
+import java.util.Optional;
 
 @RestController //Informa que é um controller
 @RequestMapping(value = "api/wishlist") //Define nome para chamada
 @CrossOrigin(origins = "*") //Define que qualquer origem pode acessar essa API
 public class WishlistController {
     @Autowired
-    WishlistRepository wishlistRepository; //Declara variável para uso nos endpointers
+    WishlistService wishlistService;
 
-    @GetMapping("/{id}") //Define caminho para chamada
-    @ApiOperation(value = "Lista os produtos da lista de desejos do cliente.") //Informa para Swagger a descrição do endpoint
+    @PostMapping("/add")
+    @ApiOperation(value = "Adiciona produto na lista de desejos.")
+    @ApiResponse(code = 200, message = "Produto adicionado a lista de desejos!")
+    public Wishlist addProdutoWhislist(@RequestBody Wishlist wishlist) {
+        return wishlistService.cadastraProdutoWishlist(wishlist);
+    }
+
+    @DeleteMapping("/delete/{idCliente}/{idProduto}")
+    @ApiOperation(value = "Remove um produto da lista de desejos do cliente.")
+    @ApiResponse(code = 200, message = "Produto removido da lista de desejos!")
+    public void deletaCliente(@PathVariable(value = "idProduto") long idProduto, @PathVariable(value = "idCliente") long idCliente) {
+//        return
+                wishlistService.deletaProdutoWishlis(idCliente, idProduto);
+    }
+
+    @GetMapping("/{id}")
+    @ApiOperation(value = "Lista os produtos da lista de desejos do cliente.")
     public List<Wishlist> listaWhislist(@PathVariable(value = "id") long id) {
-        return this.wishlistRepository.findByidCliente(id);
+        return wishlistService.listaWishlist(id);
     }
 
-    @PostMapping("/add") //Define caminho para chamada
-    @ApiOperation(value = "Adiciona produto na lista de desejos.") //Informa para Swagger a descrição do endpoint
-    public ResponseEntity<Wishlist> addProdutoWhislist(@RequestBody Wishlist wishlist) {
-        return new ResponseEntity<Wishlist>(wishlistRepository.save(wishlist), HttpStatus.OK);
+    @GetMapping("/consulta/{idCliente}/{idProduto}")
+    @ApiOperation(value = "Consulta se um produto está na lista de desejos do cliente")
+    public ResponseEntity consultaProduto(@PathVariable(value = "idProduto") long idProduto, @PathVariable(value = "idCliente") long idCliente) {
+        return wishlistService.consultaProdutoWishlist(idCliente, idProduto);
     }
-
-    @DeleteMapping("/delete") //Define caminho para chamada
-    @ApiOperation(value = "Remove um produto da lista de desejos do cliente.") //Informa para Swagger a descrição do endpoint
-    public void deletaCliente(@RequestBody Wishlist wishlist) {
-        wishlistRepository.delete(wishlist);
-    }
-
-
 }
