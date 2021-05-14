@@ -82,7 +82,7 @@ $ cd DaraSquad
 </div>
 <br>
 
-## 🔮 Autoras
+## :woman_technologist: Autoras
 
 <table>
     <td align="center"><br/>
