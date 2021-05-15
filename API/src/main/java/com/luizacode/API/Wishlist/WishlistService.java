@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -11,6 +12,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -22,8 +24,14 @@ public class WishlistService {
     @Autowired
     EntityManager entityManager;
 
-    public Wishlist cadastraProdutoWishlist(Wishlist wishlist) {
-        return wishlistRepository.save(wishlist);
+    public ResponseEntity cadastraProdutoWishlist(Long idCliente, Long idProduto) {
+        List<Wishlist> quantidadeProdutosWishlist = wishlistRepository.findByidCliente(idCliente);
+        if (quantidadeProdutosWishlist.size() >= 20) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Já existem 20 itens nessa lista!");
+        } else {
+            wishlistService.saveByIdClienteAndIdProduto(idCliente, idProduto);
+            return ResponseEntity.status(HttpStatus.OK).body("Produto Adicionado!");
+        }
     }
 
     public void deletaProdutoWishlis(Long idCliente, Long idProduto) {
@@ -38,11 +46,17 @@ public class WishlistService {
     public ResponseEntity consultaProdutoWishlist(Long idCliente, Long idProduto) {
         Wishlist produtoExiste = wishlistService.getByIdClienteIdProduto(idCliente, idProduto);
         if (produtoExiste == null) {                                                       //se a consulta retorna null, o produto não está na lista
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("O produto não consta nessa wishlist!");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("O produto NÃO esta nessa wishlist!");
         } else {                                                                            //se a consulta retorna algum registro do produto na lista é pq ele consta na lista desse usuário
-            return ResponseEntity.status(HttpStatus.OK).body("O produto consta nessa wishlist!");
+            return ResponseEntity.status(HttpStatus.OK).body("O produto esta nessa wishlist!");
         }
     }
+
+    public Wishlist saveByIdClienteAndIdProduto(Long idCliente, Long idProduto) {
+        Wishlist wishlist = new Wishlist(idCliente, idProduto);
+        return wishlistRepository.save(wishlist);
+    }
+
 
     public Wishlist getByIdClienteIdProduto(Long idCliente, Long idProduto) {
         List<Predicate> predicates = new ArrayList<>();   //cria lista para inserir condições de pesquisa para a query

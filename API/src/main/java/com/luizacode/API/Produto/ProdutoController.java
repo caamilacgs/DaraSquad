@@ -16,28 +16,28 @@ public class ProdutoController {
     @Autowired
     ProdutoService produtoService;
 
-    @PostMapping("/add") //Define caminho para chamada
+    @PostMapping() //Define caminho para chamada
     @ApiOperation(value = "Cadastra um produto.") //Informa para Swagger a descrição do endpoint
     @ApiResponse(code = 200, message = "Produto cadastrado!")
     public ResponseEntity<Produto> cadastraProduto(@RequestBody Produto produto) {
         return new ResponseEntity<Produto>(produtoService.cadastraProduto(produto), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @ApiOperation(value = "Deleta um produto cadastrado.")
     @ApiResponse(code = 200, message = "Produto deletado!")
     public void deletaProduto(@PathVariable(value = "id") Long id) {
         produtoService.deletaProduto(id);
     }
 
-    @PutMapping("/att")
+    @PutMapping()
     @ApiOperation(value = "Atualiza informações de um produto.")
     @ApiResponse(code = 200, message = "Produto atualizado!")
     public Produto atualizaProduto(@RequestBody Produto produto) {
         return produtoService.atualizaProduto(produto);
     }
 
-    @GetMapping("/listar")
+    @GetMapping()
     @ApiOperation(value = "Retorna lista de produtos cadastrados.")
     public List<Produto> listaProduto() {
         return produtoService.buscaProdutos();
@@ -45,7 +45,7 @@ public class ProdutoController {
 
     @GetMapping("/{id}")
     @ApiOperation(value = "Retorna um produto específico através id.")
-    public Optional listaProdutoUnico(@PathVariable(value = "id") long id) {
+    public Optional listaProdutoUnico(@PathVariable(value = "id") Long id) {
         return produtoService.buscaUmProduto(id);
     }
 
