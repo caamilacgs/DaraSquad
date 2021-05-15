@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -24,28 +23,28 @@ public class ProdutoController {
         return new ResponseEntity<Produto>(produtoService.cadastraProduto(produto), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/delete/{id}") //Define caminho para chamada
-    @ApiOperation(value = "Deleta um produto cadastrado.") //Informa para Swagger a descrição do endpoint
+    @DeleteMapping("/delete/{id}")
+    @ApiOperation(value = "Deleta um produto cadastrado.")
     @ApiResponse(code = 200, message = "Produto deletado!")
     public void deletaProduto(@PathVariable(value = "id") Long id) {
         produtoService.deletaProduto(id);
     }
 
-    @PutMapping("/att") //Define caminho para chamada
-    @ApiOperation(value = "Atualiza informações de um produto.") //Informa para Swagger a descrição do endpoint
+    @PutMapping("/att")
+    @ApiOperation(value = "Atualiza informações de um produto.")
     @ApiResponse(code = 200, message = "Produto atualizado!")
     public Produto atualizaProduto(@RequestBody Produto produto) {
         return produtoService.atualizaProduto(produto);
     }
 
-    @GetMapping("/listar") //Define caminho para chamada
-    @ApiOperation(value = "Retorna lista de produtos cadastrados.") //Informa para Swagger a descrição do endpoint
+    @GetMapping("/listar")
+    @ApiOperation(value = "Retorna lista de produtos cadastrados.")
     public List<Produto> listaProduto() {
         return produtoService.buscaProdutos();
     }
 
-    @GetMapping("/{id}") //Define caminho para chamada
-    @ApiOperation(value = "Retorna um produto específico através id.") //Informa para Swagger a descrição do endpoint
+    @GetMapping("/{id}")
+    @ApiOperation(value = "Retorna um produto específico através id.")
     public Optional listaProdutoUnico(@PathVariable(value = "id") long id) {
         return produtoService.buscaUmProduto(id);
     }

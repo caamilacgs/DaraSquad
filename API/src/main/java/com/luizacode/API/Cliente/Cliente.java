@@ -1,7 +1,6 @@
 package com.luizacode.API.Cliente;
 
 import com.luizacode.API.Produto.Produto;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;

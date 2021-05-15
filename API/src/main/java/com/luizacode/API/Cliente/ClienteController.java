@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -27,28 +26,28 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.CREATED).body(existente.get());
     }
 
-    @DeleteMapping("/delete/{id}") //Define caminho para chamada
-    @ApiOperation(value = "Deleta um cliente cadastrado.") //Informa para Swagger a descrição do endpoint
+    @DeleteMapping("/delete/{id}")
+    @ApiOperation(value = "Deleta um cliente cadastrado.")
     @ApiResponse(code = 200, message = "Cliente deletado!")
     public void deletaCliente(@PathVariable(value = "id") Long id) {
         clienteService.deletaCliente(id);
     }
 
-    @PutMapping("/att") //Define caminho para chamada
-    @ApiOperation(value = "Atualiza informações de um cliente.") //Informa para Swagger a descrição do endpoint
+    @PutMapping("/att")
+    @ApiOperation(value = "Atualiza informações de um cliente.")
     @ApiResponse(code = 200, message = "Cliente atualizado!")
     public ResponseEntity<Cliente> atualizaCliente(@RequestBody Cliente cliente) {
         return new ResponseEntity<Cliente>(clienteService.atualizaCliente(cliente), HttpStatus.OK);
     }
 
-    @GetMapping("/listar") //Define caminho para chamada
-    @ApiOperation(value = "Retorna lista de clientes cadastrados.") //Informa para Swagger a descrição do endpoint
+    @GetMapping("/listar")
+    @ApiOperation(value = "Retorna lista de clientes cadastrados.")
     public ResponseEntity<List<Cliente>> listaCliente() {
         return ResponseEntity.ok(clienteService.buscaClientes());
     }
 
-    @GetMapping("/{id}") //Define caminho para chamada
-    @ApiOperation(value = "Retorna um produto específico através do id.") //Informa para Swagger a descrição do endpoint
+    @GetMapping("/{id}")
+    @ApiOperation(value = "Retorna um produto específico através do id.")
     public Optional listaClienteUnico(@PathVariable(value = "id") long id) {
         return clienteService.buscaUmCliente(id);
     }

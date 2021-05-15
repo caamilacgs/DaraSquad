@@ -30,6 +30,5 @@ public class ProdutoService {
 
     public Optional buscaUmProduto(Long id) {
         return produtoRepository.findById(id);
-
     }
 }

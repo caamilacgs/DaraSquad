@@ -1,11 +1,8 @@
 package com.luizacode.API.Wishlist;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
-
 import javax.persistence.*;
-import java.util.List;
-import java.util.Optional;
+
 
 
 @Entity //Informa que se trata de uma entidade;
@@ -25,13 +22,14 @@ public class Wishlist {
     @Column(name = "Produtoid")
     private Long idProduto;
 
-    public Wishlist(){}
+    public Wishlist(){
+
+    }
+
     public Wishlist(long idCliente, long idProduto) {
         this.idProduto = idProduto;
         this.idCliente = idCliente;
     }
-
-
 
     //GETTERS E SETTERS
 

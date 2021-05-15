@@ -1,13 +1,12 @@
 package com.luizacode.API.Wishlist;
 
-
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
-import java.util.Optional;
 
 @RestController //Informa que é um controller
 @RequestMapping(value = "api/wishlist") //Define nome para chamada
@@ -27,8 +26,7 @@ public class WishlistController {
     @ApiOperation(value = "Remove um produto da lista de desejos do cliente.")
     @ApiResponse(code = 200, message = "Produto removido da lista de desejos!")
     public void deletaCliente(@PathVariable(value = "idProduto") long idProduto, @PathVariable(value = "idCliente") long idCliente) {
-//        return
-                wishlistService.deletaProdutoWishlis(idCliente, idProduto);
+        wishlistService.deletaProdutoWishlis(idCliente, idProduto);
     }
 
     @GetMapping("/{id}")
