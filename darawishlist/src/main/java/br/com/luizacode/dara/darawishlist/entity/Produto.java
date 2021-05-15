@@ -32,6 +32,25 @@ public class Produto implements Serializable {
 	@NotNull
 	@Column(name = "preco")
 	private BigDecimal preco;
+	
+	
+
+	public Produto() {
+		super();
+		
+	}
+	
+	
+
+	public Produto(Long id, String nome, String descricao, BigDecimal preco) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.descricao = descricao;
+		this.preco = preco;
+	}
+
+
 
 	public Long getId() {
 		return id;

@@ -3,7 +3,7 @@ package br.com.luizacode.dara.darawishlist.service;
 import java.util.List;
 
 
-import br.com.luizacode.dara.darawishlist.entity.Produto;
+
 import br.com.luizacode.dara.darawishlist.entity.WishList;
 
 

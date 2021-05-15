@@ -30,6 +30,24 @@ public class WishList implements Serializable {
 
 	@OneToMany
 	private List<Produto> produto;
+	
+	
+
+	public WishList() {
+		super();
+		
+	}
+	
+	
+
+	public WishList(Long id, Cliente cliente, List<Produto> produto) {
+		super();
+		this.id = id;
+		this.cliente = cliente;
+		this.produto = produto;
+	}
+
+
 
 	public Long getId() {
 		return id;

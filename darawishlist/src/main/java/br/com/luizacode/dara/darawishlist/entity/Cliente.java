@@ -11,6 +11,9 @@ import javax.persistence.Table;
 
 import com.sun.istack.NotNull;
 
+
+
+
 @Entity
 @Table(name = "cliente")
 public class Cliente implements Serializable {
@@ -36,6 +39,21 @@ public class Cliente implements Serializable {
 	@NotNull
 	@Column(name = "endereco")
 	private String endereco;
+	
+	
+
+	public Cliente(Long id, String nome, String cpf, String email, String endereco) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.email = email;
+		this.endereco = endereco;
+	}
+
+	public Cliente() {
+		
+	}
 
 	public Long getId() {
 		return id;
@@ -76,5 +94,8 @@ public class Cliente implements Serializable {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
+
+	
+	
 
 }
