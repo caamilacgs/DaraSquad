@@ -9,7 +9,7 @@ public class DaraApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DaraApplication.class, args);
 
-		System.out.println("----> Camila Coutinho");
+		System.out.println("----> Camila Coutinho Executando...");
 	}
 
 }
