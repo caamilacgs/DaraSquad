@@ -1,13 +1,15 @@
-package com.darasquad.wishlist;
+package com.darawishlist.dara;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WishlistApplication {
+public class DaraApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WishlistApplication.class, args);
+		SpringApplication.run(DaraApplication.class, args);
+
+		System.out.println("----> Camila Coutinho");
 	}
 
 }
