@@ -1,6 +1,9 @@
 package com.luizacode.API.Cliente;
 
+import com.luizacode.API.Wishlist.Wishlist;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +19,9 @@ public class ClienteService {
         if (cpfExistente.isPresent()) {
             return Optional.empty();
         }
+
         return Optional.ofNullable(clienteRepository.save(cliente));
+
     }
 
     public List<Cliente> buscaClientes() {
@@ -27,8 +32,9 @@ public class ClienteService {
         return clienteRepository.save(cliente);
     }
 
-    public void deletaCliente(Long id) {
+    public ResponseEntity<String> deletaCliente(Long id) {
         clienteRepository.deleteById(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Cliente deletado!");
     }
 
     public Optional buscaUmCliente(Long id) {

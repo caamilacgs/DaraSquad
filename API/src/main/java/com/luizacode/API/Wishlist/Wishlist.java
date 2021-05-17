@@ -1,9 +1,11 @@
 package com.luizacode.API.Wishlist;
 
-import com.sun.istack.NotNull;
+import com.luizacode.API.Cliente.Cliente;
+import com.luizacode.API.Produto.Produto;
+
 import javax.persistence.*;
-
-
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity //Informa que se trata de uma entidade;
 @Table(name = "TB_WISHLIST") //Informa nome da tabela que ela utiliza;
@@ -14,24 +16,24 @@ public class Wishlist {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long idWishlist;
 
-    @NotNull //Define que o Clienteid não pode ser nulo
-    @Column(name = "Clienteid")
-    private Long idCliente;
+    @OneToOne
+    @JoinColumn(name = "cliente_id", referencedColumnName = "idCliente")
+    private Cliente cliente;
 
-    @NotNull //Define que o Produtoid não pode ser nulo
-    @Column(name = "Produtoid")
-    private Long idProduto;
+    @ManyToMany(mappedBy = "listaWishlist")
+    private List<Produto> listaProdutos = new ArrayList<>();
 
-    public Wishlist(){
+
+//GETTERS E SETTERS
+
+
+    public Wishlist() {
 
     }
 
-    public Wishlist(long idCliente, long idProduto) {
-        this.idProduto = idProduto;
-        this.idCliente = idCliente;
+    public Wishlist(Cliente cliente) {
+        this.cliente = cliente;
     }
-
-    //GETTERS E SETTERS
 
     public long getIdWishlist() {
         return idWishlist;
@@ -41,19 +43,19 @@ public class Wishlist {
         this.idWishlist = idWishlist;
     }
 
-    public Long getIdCliente() {
-        return idCliente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setIdCliente(Long idCliente) {
-        this.idCliente = idCliente;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public Long getIdProduto() {
-        return idProduto;
+    public List<Produto> getListaProdutos() {
+        return listaProdutos;
     }
 
-    public void setIdProduto(Long idProduto) {
-        this.idProduto = idProduto;
+    public void setListaProdutos(List<Produto> listaProdutos) {
+        this.listaProdutos = listaProdutos;
     }
 }

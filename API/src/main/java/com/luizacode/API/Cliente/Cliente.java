@@ -1,9 +1,9 @@
 package com.luizacode.API.Cliente;
 
-import com.luizacode.API.Produto.Produto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.luizacode.API.Wishlist.Wishlist;
+import com.sun.istack.NotNull;
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Entity //Informa que se trata de uma entidade;
@@ -19,15 +19,14 @@ public class Cliente {
     private String cpf;
     private String email;
 
-    @ManyToMany (cascade = CascadeType.ALL)                              //Define a relação com a tabela PRODUTO
-    @JoinTable(name = "TB_WISHLIST",                                    //Define o nome da tabela a ser criada
-            joinColumns = @JoinColumn(name = "Clienteid"),            //Define a coluna Clienteid onde a enditade "Cliente" é a dona desssa FK
-            inverseJoinColumns = @JoinColumn(name = "Produtoid"))      //Define a coluna Produtoid onde a entidade "Produto" é a dona desssa FK
-
-    private List<Produto> Produto = new ArrayList<>(); //cria lista para produtos
-
+    @JsonIgnore
+    @NotNull
+    @OneToOne(mappedBy = "cliente")
+    private Wishlist wishlist;
 
     //GETTERS E SETTERS
+
+
 
     public long getIdCliente() {
         return idCliente;
@@ -61,11 +60,13 @@ public class Cliente {
         this.email = email;
     }
 
-    public List<com.luizacode.API.Produto.Produto> getProduto() {
-        return Produto;
+    public Wishlist getWishlist() {
+        return wishlist;
     }
 
-    public void setProduto(List<com.luizacode.API.Produto.Produto> produto) {
-        Produto = produto;
+    public void setWishlist(Wishlist wishlist) {
+        this.wishlist = wishlist;
     }
 }
+
+

@@ -1,7 +1,7 @@
 package com.luizacode.API.Produto;
-
-import com.luizacode.API.Cliente.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +12,9 @@ public class ProdutoService {
     @Autowired
     ProdutoRepository produtoRepository;
 
-    public Produto cadastraProduto(Produto produto){
-        return produtoRepository.save(produto);
+    public ResponseEntity cadastraProduto(Produto produto){
+        produtoRepository.save(produto);
+        return ResponseEntity.status(HttpStatus.OK).body("Produto cadastrado!");
     }
 
     public List<Produto> buscaProdutos() {
@@ -24,8 +25,9 @@ public class ProdutoService {
         return produtoRepository.save(produto);
     }
 
-    public void deletaProduto(Long id) {
+    public ResponseEntity<String> deletaProduto(Long id) {
         produtoRepository.deleteById(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Produto deletado!");
     }
 
     public Optional buscaUmProduto(Long id) {

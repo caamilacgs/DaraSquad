@@ -1,78 +1,84 @@
 package com.luizacode.API.Wishlist;
 
+import com.luizacode.API.Cliente.Cliente;
+import com.luizacode.API.Cliente.ClienteRepository;
+import com.luizacode.API.Produto.Produto;
+import com.luizacode.API.Produto.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-import java.util.ArrayList;
-import java.util.List;
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 
 @Service
+@Transactional
 public class WishlistService {
     @Autowired
     private WishlistRepository wishlistRepository;
     @Autowired
     private WishlistService wishlistService;
     @Autowired
+    private ClienteRepository clienteRepository;
+    @Autowired
+    private ProdutoRepository produtoRepository;
+    @Autowired
     EntityManager entityManager;
 
-    public ResponseEntity cadastraProdutoWishlist(Long idCliente, Long idProduto) {
-        List<Wishlist> quantidadeProdutosWishlist = wishlistRepository.findByidCliente(idCliente);
-        if (quantidadeProdutosWishlist.size() >= 20) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Já existem 20 itens nessa lista!");
-        } else {
-            wishlistService.saveByIdClienteAndIdProduto(idCliente, idProduto);
-            return ResponseEntity.status(HttpStatus.OK).body("Produto Adicionado!");
-        }
-    }
 
-    public void deletaProdutoWishlis(Long idCliente, Long idProduto) {
-        Wishlist wishlistApagada = wishlistService.getByIdClienteIdProduto(idCliente, idProduto);
-        wishlistRepository.deleteById(wishlistApagada.getIdWishlist());
-    }
-
-    public List<Wishlist> listaWishlist(Long id) {
-        return wishlistRepository.findByidCliente(id);
+    public Optional<Wishlist> listaWishlist(Long idCliente) {
+        return wishlistRepository.findByClienteIdCliente(idCliente);   //acha id wishlist
     }
 
     public ResponseEntity consultaProdutoWishlist(Long idCliente, Long idProduto) {
-        Wishlist produtoExiste = wishlistService.getByIdClienteIdProduto(idCliente, idProduto);
-        if (produtoExiste == null) {                                                       //se a consulta retorna null, o produto não está na lista
+        Produto produtoExists = wishlistService.getByIdClienteIdProduto(idCliente, idProduto);
+        if (produtoExists == null) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("O produto NÃO esta nessa wishlist!");
-        } else {                                                                            //se a consulta retorna algum registro do produto na lista é pq ele consta na lista desse usuário
+        } else {
             return ResponseEntity.status(HttpStatus.OK).body("O produto esta nessa wishlist!");
         }
     }
 
-    public Wishlist saveByIdClienteAndIdProduto(Long idCliente, Long idProduto) {
-        Wishlist wishlist = new Wishlist(idCliente, idProduto);
-        return wishlistRepository.save(wishlist);
+    public Produto getByIdClienteIdProduto(Long idCliente, Long idProduto) {
+        Optional<Wishlist> wishlist = wishlistRepository.findByClienteIdCliente(idCliente);
+        Produto produtoExists = wishlist.get().getListaProdutos().stream().filter(Produto -> idProduto.equals(Produto.getIdProduto())).findAny().orElse(null);
+        return produtoExists;
     }
 
-
-    public Wishlist getByIdClienteIdProduto(Long idCliente, Long idProduto) {
-        List<Predicate> predicates = new ArrayList<>();   //cria lista para inserir condições de pesquisa para a query
-        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Wishlist> criteria = builder.createQuery(Wishlist.class);
-        Root<Wishlist> root = criteria.from(Wishlist.class);
-        criteria.select(root);
-        predicates.add(builder.equal(root.get("idCliente"), idCliente));           //cria condição com id do cliente e passa para a lista
-        predicates.add(builder.equal(root.get("idProduto"), idProduto));           //cria condição com id do produto e passa para a lista
-        criteria.where(predicates.toArray(predicates.toArray(new Predicate[0]))); //passa o array como parametro de condições pro where/query
-        List<Wishlist> wishlistConsultada = entityManager.createQuery(criteria).getResultList(); //coloca o resultado numa lista chamada whislistConsultada
-        if (wishlistConsultada == null || wishlistConsultada.isEmpty()) {         //if para retornar valor comparável com null, por causa da consulta
-            return null;                                                          // se null ou se vazia, retorna null
+    public ResponseEntity cadastraProdutoWishlist(Long idCliente, Long idProduto) {
+        Optional<Wishlist> wishlistCliente = wishlistRepository.findByClienteIdCliente(idCliente);
+        if (wishlistCliente.isPresent()) {
+            if (wishlistCliente.get().getListaProdutos().size() < 20) {
+                Produto produtoExists = wishlistService.getByIdClienteIdProduto(idCliente, idProduto);
+                if (produtoExists == null) {
+                    Optional<Produto> produto = produtoRepository.findById(idProduto);
+                    produto.get().getListaWishlist().add(wishlistCliente.get());
+                    wishlistCliente.get().getListaProdutos().add(produto.get());
+                    return new ResponseEntity<Wishlist>(wishlistCliente.get(), HttpStatus.OK);
+                } else {
+                    return ResponseEntity.status(HttpStatus.CONFLICT).body("O produto já foi adicionado anteriormente.");
+                }
+            } else {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Já existem 20 itens nessa lista!");
+            }
+        } else {
+            Optional<Cliente> cliente = clienteRepository.findById(idCliente);
+            if (cliente.isPresent()) {
+                Wishlist wishlist = new Wishlist(cliente.get());
+                Wishlist wishlistNova = wishlistRepository.save(wishlist);
+                Produto produto = entityManager.find(Produto.class, idProduto);
+                produto.getListaWishlist().add(wishlistNova);
+                wishlistNova.getListaProdutos().add(produto);
+                return new ResponseEntity<Wishlist>(wishlistNova, HttpStatus.OK);
+            } else
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Cliente não existe.");
         }
-        return wishlistConsultada.get(0);                                      // se não estiver vazia, retorna o primeiro registro da lista, que é o resultado da query de consulta
     }
-
 
 }
+
+
+
+

@@ -31,8 +31,8 @@ public class ClienteController {
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Deleta um cliente cadastrado.")
     @ApiResponse(code = 200, message = "Cliente deletado!")
-    public void deletaCliente(@PathVariable(value = "id") Long id) {
-        clienteService.deletaCliente(id);
+    public ResponseEntity deletaCliente(@PathVariable(value = "id") Long id) {
+        return clienteService.deletaCliente(id);
     }
 
     @PutMapping()
@@ -43,13 +43,13 @@ public class ClienteController {
     }
 
     @GetMapping()
-    @ApiOperation(value = "Retorna lista de clientes cadastrados.")
+    @ApiOperation(value = "Lista clientes cadastrados.")
     public ResponseEntity<List<Cliente>> listaCliente() {
         return ResponseEntity.ok(clienteService.buscaClientes());
     }
 
     @GetMapping("/{id}")
-    @ApiOperation(value = "Retorna um cliente específico através do id.")
+    @ApiOperation(value = "Retorna cliente específico através do id.")
     public Optional listaClienteUnico(@PathVariable(value = "id") Long id) {
         return clienteService.buscaUmCliente(id);
     }
