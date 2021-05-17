@@ -2,7 +2,8 @@ package com.luizacode.API.Wishlist;
 
 import com.luizacode.API.Cliente.Cliente;
 import com.luizacode.API.Produto.Produto;
-
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,29 +12,28 @@ import java.util.List;
 @Table(name = "TB_WISHLIST") //Informa nome da tabela que ela utiliza;
 public class Wishlist {
 
-    //id do produto gerado automaticamente e autoincrementado;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long idWishlist;
 
     @OneToOne
     @JoinColumn(name = "cliente_id", referencedColumnName = "idCliente")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Cliente cliente;
 
-    @ManyToMany(mappedBy = "listaWishlist")
+    @ManyToMany(mappedBy = "listaWishlist", cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Produto> listaProdutos = new ArrayList<>();
 
 
-//GETTERS E SETTERS
-
-
     public Wishlist() {
-
     }
 
     public Wishlist(Cliente cliente) {
         this.cliente = cliente;
     }
+
+    //GETTERS E SETTERS
 
     public long getIdWishlist() {
         return idWishlist;

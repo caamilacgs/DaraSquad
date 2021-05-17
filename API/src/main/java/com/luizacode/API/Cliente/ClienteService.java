@@ -1,10 +1,13 @@
 package com.luizacode.API.Cliente;
 
 import com.luizacode.API.Wishlist.Wishlist;
+import com.luizacode.API.Wishlist.WishlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,16 +15,15 @@ import java.util.Optional;
 public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
-
+    @Autowired
+    private WishlistRepository wishlistRepository;
 
     public Optional<Cliente> cadastraCliente(Cliente cliente) {
         Optional<Cliente> cpfExistente = clienteRepository.findByCpf(cliente.getCpf());
         if (cpfExistente.isPresent()) {
             return Optional.empty();
         }
-
         return Optional.ofNullable(clienteRepository.save(cliente));
-
     }
 
     public List<Cliente> buscaClientes() {

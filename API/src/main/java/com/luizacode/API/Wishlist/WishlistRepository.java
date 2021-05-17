@@ -13,5 +13,4 @@ public interface WishlistRepository extends JpaRepository<Wishlist, Long> {
 
     @Override
     Optional<Wishlist> findById(Long idWishlist);
-
 }

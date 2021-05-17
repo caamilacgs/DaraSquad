@@ -2,7 +2,6 @@ package com.luizacode.API.Produto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.luizacode.API.Wishlist.Wishlist;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -21,7 +20,7 @@ public class Produto implements Serializable {
     private BigDecimal valor;
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany (fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(name = "produto_wishlist",
             joinColumns = @JoinColumn(name = "produto_id"),
             inverseJoinColumns = @JoinColumn(name = "wishlist_id"))

@@ -77,6 +77,13 @@ public class WishlistService {
         }
     }
 
+    public ResponseEntity deletaProdutoWishlist(Long idCliente, Long idProduto){
+        Optional<Wishlist> wishlistCliente = wishlistRepository.findByClienteIdCliente(idCliente);
+        Optional<Produto> produto = produtoRepository.findById(idProduto);
+        produto.get().getListaWishlist().remove(wishlistCliente.get());
+        return new ResponseEntity<Wishlist>(wishlistCliente.get(), HttpStatus.OK);
+    }
+
 }
 
 

@@ -3,6 +3,8 @@ package com.luizacode.API.Cliente;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.luizacode.API.Wishlist.Wishlist;
 import com.sun.istack.NotNull;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 
 
@@ -21,12 +23,11 @@ public class Cliente {
 
     @JsonIgnore
     @NotNull
-    @OneToOne(mappedBy = "cliente")
+    @OneToOne(mappedBy = "cliente",cascade = CascadeType.ALL, orphanRemoval = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Wishlist wishlist;
 
     //GETTERS E SETTERS
-
-
 
     public long getIdCliente() {
         return idCliente;

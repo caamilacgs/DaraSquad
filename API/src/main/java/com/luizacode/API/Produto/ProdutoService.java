@@ -12,9 +12,8 @@ public class ProdutoService {
     @Autowired
     ProdutoRepository produtoRepository;
 
-    public ResponseEntity cadastraProduto(Produto produto){
-        produtoRepository.save(produto);
-        return ResponseEntity.status(HttpStatus.OK).body("Produto cadastrado!");
+    public Produto cadastraProduto(Produto produto){
+        return produtoRepository.save(produto);
     }
 
     public List<Produto> buscaProdutos() {

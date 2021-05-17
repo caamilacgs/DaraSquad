@@ -19,7 +19,7 @@ public class ProdutoController {
     @PostMapping() //Define caminho para chamada
     @ApiOperation(value = "Cadastra um produto.") //Informa para Swagger a descrição do endpoint
     @ApiResponse(code = 200, message = "Produto cadastrado!")
-    public ResponseEntity cadastraProduto(@RequestBody Produto produto) {
+    public Produto cadastraProduto(@RequestBody Produto produto) {
         return produtoService.cadastraProduto(produto);
     }
 
