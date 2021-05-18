@@ -28,12 +28,12 @@ As seguintes ferramentas foram utilizadas na construção do projeto:
 
 &rarr; <a href="https://trello.com/b/GNsUcO4e/dara-squad-wishlist"> Trello </a> - Kanban de tarefas do time.  <br>
 &rarr; <a href="https://www.notion.so/DARA-SQUAD-Luiza-Code-22a6a76568fe493ea40845044adc0760">Notion </a> - Anotações e relatorios do time.  <br>
-&rarr; <a href="https://www.java.com/pt-BR/">Java</a> - Linguagem de programação utilizada. <br>
-&rarr; <a href="https://spring.io/projects/spring-boot">SpringBoot</a> - Frameworks java utlizada no projeto. <br>
-&rarr; <a href="https://maven.apache.org/">Maven </a> - Gerenciar as dependências do projeto. <br>
-&rarr; <a href="https://www.mysql.com/">Mysql</a> - Banco de dados  <br>
-&rarr; <a href="https://www.postman.com/">Postman</a> - Teste local das APIs  <br>
-&rarr; <a href="https://swagger.io/">Swagger</a> - Documentação da APIs.  <br>
+&rarr; <a href="https://www.typescriptlang.org/">Java</a> - Linguagem de programação utilizada. <br>
+&rarr; <a href="https://www.typescriptlang.org/">SpringBoot</a> - Frameworks java utlizada no projeto. <br>
+&rarr; <a href="https://reactjs.org">Maven </a> - Gerenciar as dependências do projeto. <br>
+&rarr; <a href="https://www.typescriptlang.org/">Mysql</a> - Banco de dados  <br>
+&rarr; <a href="https://www.typescriptlang.org/">Postman</a> - Teste local das APIs  <br>
+&rarr; <a href="https://www.typescriptlang.org/">Swagger</a> - Documentação da APIs.  <br>
 
 <br>
 
@@ -46,13 +46,12 @@ As seguintes ferramentas foram utilizadas na construção do projeto:
 
 #### > Dependencias do Projeto:
 
-- Spring Data JPA
-- Spring Web
-- Spring Boot DevTools
-- MySQL Driver
-- H2database
-- Lombok 
-
+- <a href="https://spring.io/projects/spring-data-jpa#overview">Spring Data JPA</a><br>
+- <a href="https://spring.io/projects/spring-ws">Spring Web</a><br>
+- <a href="https://spring.io/projects/spring-boot">Spring Boot DevTools</a><br>
+- <a href="https://spring.io/guides/gs/accessing-data-mysql/">MySQL Driver </a><br>
+- <a href="https://spring.io/guides/gs/accessing-data-jpa/">H2database</a><br>
+- <a href="https://projectlombok.org/setup/maven">Lombok </a><br>
 
 <br>
 
@@ -69,8 +68,8 @@ $ cd DaraSquad
 #### > Compilando e rodando o projeto:
 - Acesse o projeto por uma IDE de sua preferência: INTELIJ, ECLIPSE, VSCODE etc.
 - Consulte o arquivo aplication.properties para definir as configurações de acesso local ao banco.
-    - Para conectar no banco h2: <a href="https://github.com/caamilacgs/DaraSquad/blob/camila/conexao/h2.md"> Link de como configurar </a>
-    - Para conectar no banco mysql: <a href="https://github.com/caamilacgs/DaraSquad/blob/camila/conexao/mysql.md"> Link de como configurar </a>
+    - <a href="https://github.com/caamilacgs/DaraSquad/blob/camila/conexao/h2.md"> Procedimento de como configurar o banco H2 </a>
+    - <a href="https://github.com/caamilacgs/DaraSquad/blob/camila/conexao/mysql.md"> Procedimento de como configurar o banco MYSQL </a>
     
 - Para compilar o projeto vá até a pasta onde se encontra o arquivo `pom.xml` e execute no terminal o comando: `mvn clean install`
 
