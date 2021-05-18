@@ -7,14 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.luizacode.dara.darawishlist.entity.Cliente;
+import br.com.luizacode.dara.darawishlist.entity.WishList;
 import br.com.luizacode.dara.darawishlist.repository.ClienteRepository;
 import br.com.luizacode.dara.darawishlist.service.ClienteService;
+import br.com.luizacode.dara.darawishlist.service.WishListService;
 
 @Service
 public class ClienteServiceImpl implements ClienteService {
 
 	@Autowired
 	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private WishListService wishListService;
 
 	@Override
 	public List<Cliente> listarTodos() {
@@ -23,14 +28,21 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	public Cliente buscaPorId(Long id) {
-		return clienteRepository.findById(id).orElse(new Cliente());
+		return clienteRepository.findById(id).orElse(null);
+		//return clienteRepository.findById(id).orElse(new Cliente());
 	}
 
 	@Override
 	public Cliente cadastrar(Cliente cliente) {
-		return this.clienteRepository.save(cliente);
+		WishList wishList = new WishList();
+		
+		Cliente cli = this.clienteRepository.save(cliente);
+		wishList.setCliente(cli);
+		wishListService.salvar(wishList);
+		return cli;
 
 	}
+
 
 	@Override
 	public void remover(Long id) {
@@ -44,6 +56,7 @@ public class ClienteServiceImpl implements ClienteService {
 
 		if (cli.isPresent()) {
 			novoDadosCliente = cli.get();
+			
 
 			novoDadosCliente.setNome(cliente.getNome());
 			novoDadosCliente.setCpf(cliente.getCpf());

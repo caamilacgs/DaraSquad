@@ -3,8 +3,6 @@ package br.com.luizacode.dara.darawishlist.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,43 +27,32 @@ public class ClienteController {
 	@Autowired
 	private ClienteService clienteService;
 
-	@GetMapping(value = "/all")
+	@GetMapping()
 	@ApiOperation(value= "Retorna uma Lista de Cliente")
 	public List<Cliente> listarTodos() {
 		return clienteService.listarTodos();
 	}
 
-	@PostMapping(value = "/add")
+	@PostMapping()
 	@ApiOperation(value= "Salva um Cliente")
-	public ResponseEntity<Cliente> create(@RequestBody Cliente cliente) {
-		try {
-			return new ResponseEntity<>((Cliente) clienteService.cadastrar(cliente), HttpStatus.CREATED);
-		}catch (Exception e) {
-			
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
+	public Cliente create(@RequestBody Cliente cliente) {
+		return this.clienteService.cadastrar(cliente);
 		
 	}
 
 	@GetMapping(value = "/{id}")
 	@ApiOperation(value= "Retorna um Cliente unico ")
-	public ResponseEntity<Cliente> listarPorId(@PathVariable Long id) {
-		try {
-			return new ResponseEntity<>((Cliente) clienteService.buscaPorId(id), HttpStatus.OK);
-		}catch (Exception e){
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-		
-
+	public Cliente listarPorId(@PathVariable Long id) {
+		return this.clienteService.buscaPorId(id);
 	}
 
-	@DeleteMapping(value = "/remove/{id}")
+	@DeleteMapping("/{id}")
 	@ApiOperation(value= "Deleta um Cliente")
 	public void delete(@PathVariable Long id) {
 		this.clienteService.remover(id);
 	}
 
-	@PutMapping(value = "/update/{id}")
+	@PutMapping(value = "/{id}")
 	@ApiOperation(value= "Atualiza a informacoes do Cliente")
 	public Cliente atualizar(@RequestBody Cliente cliente, @PathVariable Long id) {
 		return this.clienteService.atualizar(cliente, id);

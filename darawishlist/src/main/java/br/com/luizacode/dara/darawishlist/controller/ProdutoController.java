@@ -24,15 +24,15 @@ import io.swagger.annotations.ApiOperation;
 public class ProdutoController {
 
 	@Autowired
-	ProdutoService produtoService;
+	private ProdutoService produtoService;
 
-	@GetMapping(value = "/all")
+	@GetMapping()
 	@ApiOperation(value= "Retorna uma Lista de Produto")
 	public List<Produto> listarTodos() {
 		return produtoService.listarTodos();
 	}
 
-	@PostMapping(value = "/add")
+	@PostMapping()
 	@ApiOperation(value= "Salva um Produto")
 	public Produto create(@RequestBody Produto produto) {
 		return this.produtoService.cadastrar(produto);
@@ -45,13 +45,13 @@ public class ProdutoController {
 
 	}
 
-	@DeleteMapping(value = "/remove/{id}")
+	@DeleteMapping(value = "/{id}")
 	@ApiOperation(value= "Deleta um Produto")
 	public void delete(@PathVariable Long id) {
 		this.produtoService.remover(id);
 	}
 
-	@PutMapping(value = "/update/{id}")
+	@PutMapping(value = "/{id}")
 	@ApiOperation(value= "Atualiza a informacoes do Produto")
 	public Produto atualizar(@RequestBody Produto produto, @PathVariable Long id) {
 		return this.produtoService.atualizar(produto, id);
