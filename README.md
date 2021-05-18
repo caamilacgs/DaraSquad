@@ -68,9 +68,9 @@ $ cd DaraSquad
 #### > Compilando e rodando o projeto:
 - Acesse o projeto por uma IDE de sua preferência: INTELIJ, ECLIPSE, VSCODE etc.
 - Consulte o arquivo aplication.properties para definir as configurações de acesso local ao banco.
-    - Para conectar no banco h2: Link de como configurar
-    - Para conectar no banco mysql: Link de como configurar
-
+    - Para conectar no banco h2: <a href="https://github.com/caamilacgs/DaraSquad/blob/camila/conexao/h2.md">Swagger</a> - Link de como configurar 
+    - Para conectar no banco mysql: <a href="https://github.com/caamilacgs/DaraSquad/blob/camila/conexao/mysql.md">Swagger</a> - Link de como configurar 
+    
 - Para compilar o projeto vá até a pasta onde se encontra o arquivo `pom.xml` e execute no terminal o comando: `mvn clean install`
 
 - Se o resultado do build for `BUILD SUCCESS`, rode o projeto usando: `mvn exec:java`
