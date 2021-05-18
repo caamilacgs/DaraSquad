@@ -26,7 +26,7 @@ No nosso projeto é possivel realizar:
 
 As seguintes ferramentas foram utilizadas na construção do projeto:
 
-&rarr; <a href="https://trello.com/b/GNsUcO4e/dara-squad-wishlist"> Trello </a> - O board de tarefas do time.  <br>
+&rarr; <a href="https://trello.com/b/GNsUcO4e/dara-squad-wishlist"> Trello </a> - Kanban de tarefas do time.  <br>
 &rarr; <a href="https://www.notion.so/DARA-SQUAD-Luiza-Code-22a6a76568fe493ea40845044adc0760">Notion </a> - Anotações e relatorios do time.  <br>
 &rarr; <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html">Javadoc </a> - Documentação do codigo.  <br>
 &rarr; <a href="https://www.typescriptlang.org/">Java</a> - Linguagem de programação utilizada. <br>
@@ -38,7 +38,7 @@ As seguintes ferramentas foram utilizadas na construção do projeto:
 
 <br>
 
-## 👷 Como rodar
+## 👷 Como rodar?
 
 #### > Pre Requsitos para rodar:
 
@@ -51,7 +51,9 @@ As seguintes ferramentas foram utilizadas na construção do projeto:
 - Spring Web
 - Spring Boot DevTools
 - MySQL Driver
+- H2database
 - Lombok 
+
 
 <br>
 
