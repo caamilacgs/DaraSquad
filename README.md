@@ -26,16 +26,15 @@ No nosso projeto é possivel realizar:
 
 As seguintes ferramentas foram utilizadas na construção do projeto:
 
-&rarr; <a href="https://trello.com/b/GNsUcO4e/dara-squad-wishlist"> Trello </a> - board de tarefas do time.  <br>
-&rarr; <a href="https://www.notion.so/DARA-SQUAD-Luiza-Code-22a6a76568fe493ea40845044adc0760">Notion </a> - Anotações do time.  <br>
-&rarr; <a href="https://editor.swagger">Swagger </a> - Documentação da API.  <br>
+&rarr; <a href="https://trello.com/b/GNsUcO4e/dara-squad-wishlist"> Trello </a> - O board de tarefas do time.  <br>
+&rarr; <a href="https://www.notion.so/DARA-SQUAD-Luiza-Code-22a6a76568fe493ea40845044adc0760">Notion </a> - Anotações e relatorios do time.  <br>
 &rarr; <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html">Javadoc </a> - Documentação do codigo.  <br>
-&rarr; <a href="https://www.typescriptlang.org/">Java</a> - Documentação do codigo. <br>
-&rarr; <a href="https://www.typescriptlang.org/">SpringBoot</a> - Documentação do codigo. <br>
+&rarr; <a href="https://www.typescriptlang.org/">Java</a> - Linguagem de programação utilizada. <br>
+&rarr; <a href="https://www.typescriptlang.org/">SpringBoot</a> - Frameworks java utlizada no projeto.. <br>
 &rarr; <a href="https://reactjs.org">Maven </a> - Documentação do codigo. <br>
-&rarr; <a href="https://www.typescriptlang.org/">Mysql</a> - Documentação do codigo.  <br>
-&rarr; <a href="https://www.typescriptlang.org/">Postman</a> - Documentação do codigo.  <br>
-&rarr; <a href="https://www.typescriptlang.org/">Swagger</a> - Documentação do codigo.  <br>
+&rarr; <a href="https://www.typescriptlang.org/">Mysql</a> - Banco de dados  <br>
+&rarr; <a href="https://www.typescriptlang.org/">Postman</a> - Teste local das APIs  <br>
+&rarr; <a href="https://www.typescriptlang.org/">Swagger</a> - Documentação da APIs.  <br>
 
 <br>
 
@@ -68,9 +67,17 @@ $ cd DaraSquad
 
 #### > Compilando e rodando o projeto:
 - Acesse o projeto por uma IDE de sua preferência: INTELIJ, ECLIPSE, VSCODE etc.
-- Para compilar o projeto vá até a pasta onde se encontra o arquivo `pom.xml` e execute o comando: `mvn clean install`
+- Consulte o arquivo aplication.properties para definir as configurações de acesso local ao banco.
+    - Para conectar no banco h2: Link de como configurar
+    - Para conectar no banco mysql: Link de como configurar
+
+- Para compilar o projeto vá até a pasta onde se encontra o arquivo `pom.xml` e execute no terminal o comando: `mvn clean install`
+
 - Se o resultado do build for `BUILD SUCCESS`, rode o projeto usando: `mvn exec:java`
-- Logo após, abra o seu navegador e acesse  `http://localhost:8080/`
+
+- Logo após, abra o seu navegador e acesse os seguintes caminhos:
+    - Para acessar a pagina inicial: `http://localhost:8080/`
+    - Para acessar a pagina do swagger: `http://localhost:8080/swagger-ui.html`
 
 <br>
 
