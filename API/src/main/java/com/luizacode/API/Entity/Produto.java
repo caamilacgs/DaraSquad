@@ -1,7 +1,7 @@
-package com.luizacode.API.Produto;
+package com.luizacode.API.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.luizacode.API.Wishlist.Wishlist;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;

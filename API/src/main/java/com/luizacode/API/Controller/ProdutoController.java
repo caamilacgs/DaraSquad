@@ -1,13 +1,13 @@
-package com.luizacode.API.Produto;
+package com.luizacode.API.Controller;
 
+import com.luizacode.API.Entity.Produto;
+import com.luizacode.API.Service.ProdutoService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.Optional;
 
 @RestController //Informa que é um controller
 @RequestMapping(value = "api/produto") //Define nome para chamada
@@ -45,7 +45,7 @@ public class ProdutoController {
 
     @GetMapping("/{id}")
     @ApiOperation(value = "Retorna produto específico através id.")
-    public Optional listaProdutoUnico(@PathVariable(value = "id") Long id) {
+    public Object listaProdutoUnico(@PathVariable(value = "id") Long id) {
         return produtoService.buscaUmProduto(id);
     }
 

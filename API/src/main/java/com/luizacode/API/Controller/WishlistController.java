@@ -1,11 +1,12 @@
-package com.luizacode.API.Wishlist;
+package com.luizacode.API.Controller;
 
+import com.luizacode.API.Entity.Wishlist;
+import com.luizacode.API.Service.WishlistService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Optional;
 
 
@@ -20,10 +21,11 @@ public class WishlistController {
     @ApiOperation(value = "Adiciona produto na lista de desejos do cliente.")
     @ApiResponse(code = 200, message = "Produto adicionado a lista de desejos!")
     public ResponseEntity adicionaProdutoWhislist(@PathVariable(value = "idCliente") Long idCliente, @PathVariable(value = "idProduto") Long idProduto) {
-       return wishlistService.cadastraProdutoWishlist(idCliente, idProduto);
+       return wishlistService.verificaWishlist(idCliente, idProduto);
     }
 
     @DeleteMapping("delete/{idCliente}/{idProduto}")
+    @ApiOperation(value = "Remove produto na lista de desejos do cliente.")
     public ResponseEntity removeProdutoWishlist(@PathVariable(value = "idCliente") Long idCliente, @PathVariable(value = "idProduto") Long idProduto) {
         return wishlistService.deletaProdutoWishlist(idCliente, idProduto);
     }

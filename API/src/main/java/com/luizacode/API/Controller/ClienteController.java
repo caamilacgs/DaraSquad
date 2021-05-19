@@ -1,5 +1,7 @@
-package com.luizacode.API.Cliente;
+package com.luizacode.API.Controller;
 
+import com.luizacode.API.Service.ClienteService;
+import com.luizacode.API.Entity.Cliente;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,18 +22,14 @@ public class ClienteController {
     @PostMapping() //Define caminho para chamada
     @ApiOperation(value = "Cadastra um cliente.") //Informa para Swagger a descrição do endpoint
     @ApiResponse(code = 200, message = "Cliente cadastrado!")
-    public ResponseEntity cadastraCliente(@RequestBody Cliente cliente) {
-        Optional<Cliente> existente = clienteService.cadastraCliente(cliente);
-        if (existente.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("CPF já cadastrado!");
-        }
-        return ResponseEntity.status(HttpStatus.CREATED).body(existente.get());
+    public Object cadastraCliente(@RequestBody Cliente cliente) {
+        return clienteService.cadastraCliente(cliente);
     }
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Deleta um cliente cadastrado.")
     @ApiResponse(code = 200, message = "Cliente deletado!")
-    public ResponseEntity deletaCliente(@PathVariable(value = "id") Long id) {
+    public Object deletaCliente(@PathVariable(value = "id") Long id) {
         return clienteService.deletaCliente(id);
     }
 
@@ -50,7 +48,7 @@ public class ClienteController {
 
     @GetMapping("/{id}")
     @ApiOperation(value = "Retorna cliente específico através do id.")
-    public Optional listaClienteUnico(@PathVariable(value = "id") Long id) {
+    public Object listaClienteUnico(@PathVariable(value = "id") Long id) {
         return clienteService.buscaUmCliente(id);
     }
 

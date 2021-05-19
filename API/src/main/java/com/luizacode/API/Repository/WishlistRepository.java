@@ -1,5 +1,6 @@
-package com.luizacode.API.Wishlist;
+package com.luizacode.API.Repository;
 
+import com.luizacode.API.Entity.Wishlist;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,6 @@
-package com.luizacode.API.Cliente;
+package com.luizacode.API.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.luizacode.API.Wishlist.Wishlist;
 import com.sun.istack.NotNull;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;

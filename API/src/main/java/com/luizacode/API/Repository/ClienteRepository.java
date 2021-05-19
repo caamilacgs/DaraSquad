@@ -1,5 +1,6 @@
-package com.luizacode.API.Cliente;
+package com.luizacode.API.Repository;
 
+import com.luizacode.API.Entity.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.Optional;

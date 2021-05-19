@@ -1,9 +1,10 @@
-package com.luizacode.API.Wishlist;
+package com.luizacode.API.Entity;
 
-import com.luizacode.API.Cliente.Cliente;
-import com.luizacode.API.Produto.Produto;
+import com.luizacode.API.Entity.Cliente;
+import com.luizacode.API.Entity.Produto;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
