@@ -31,7 +31,7 @@ public class RestExceptionHandler {
                 .newBuilder()
                 .timestamp(new Date().getTime())
                 .status(HttpStatus.BAD_REQUEST.value())
-                .title("Resource not found")
+                .title("Wishlist Exception")
                 .detail(wishException.getMessage())
                 .developerMessage(wishException.getClass().getName())
                 .build();
