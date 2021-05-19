@@ -1,6 +1,7 @@
 package com.luizacode.API.Service;
 
 import com.luizacode.API.Entity.Cliente;
+import com.luizacode.API.Exceptions.ResourcesNotFoundException;
 import com.luizacode.API.Repository.ClienteRepository;
 import com.luizacode.API.Repository.WishlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,22 +32,25 @@ public class ClienteService {
     }
 
     public Cliente atualizaCliente(Cliente cliente) {
+        verificaClienteExiste(cliente.getIdCliente());
         return clienteRepository.save(cliente);
     }
 
     public Object deletaCliente(Long id) {
+        verificaClienteExiste(id);
         clienteRepository.deleteById(id);
         return ResponseEntity.status(HttpStatus.OK).body("Cliente deletado!");
     }
 
     public Object buscaUmCliente(Long id) {
-        if (clienteExiste(id)) {
-            return clienteRepository.findById(id);
-        }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Produto não existe.");
+        verificaClienteExiste(id);
+        return clienteRepository.findById(id);
     }
 
-    public boolean clienteExiste(Long id) {
-        return clienteRepository.findById(id).isPresent();
+    public void verificaClienteExiste(Long id) {
+        if (clienteRepository.findById(id).isEmpty())
+            throw new ResourcesNotFoundException("Cliente não encontrado para o ID:" + id);
     }
+
 }
+

@@ -1,16 +1,15 @@
 package com.luizacode.API.Service;
 
 import com.luizacode.API.Entity.Cliente;
+import com.luizacode.API.Exceptions.ResourcesNotFoundException;
+import com.luizacode.API.Exceptions.WishlistException;
 import com.luizacode.API.Repository.ClienteRepository;
 import com.luizacode.API.Entity.Produto;
 import com.luizacode.API.Entity.Wishlist;
 import com.luizacode.API.Repository.ProdutoRepository;
 import com.luizacode.API.Repository.WishlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.util.Optional;
@@ -40,19 +39,19 @@ public class WishlistService {
         return wishlistRepository.findByClienteIdCliente(idCliente);
     }
 
-    public ResponseEntity consultaProdutoWishlist(Long idCliente, Long idProduto) {
+    public Produto consultaProdutoWishlist(Long idCliente, Long idProduto) {
         Produto produtoExists = wishlistService.getByIdClienteIdProduto(idCliente, idProduto);
-        if (produtoExists == null) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("O produto NÃO esta nessa wishlist!");
+        if (produtoExists != null) {
+            return produtoExists;
         }
-        return ResponseEntity.status(HttpStatus.OK).body("O produto esta nessa wishlist!");
+        throw new ResourcesNotFoundException("Produto não encontrado!");
     }
 
-    public ResponseEntity deletaProdutoWishlist(Long idCliente, Long idProduto) {
+    public Wishlist removeProdutoWishlist(Long idCliente, Long idProduto) {
         Optional<Wishlist> wishlistCliente = wishlistRepository.findByClienteIdCliente(idCliente);
         Optional<Produto> produto = produtoRepository.findById(idProduto);
         produto.get().getListaWishlist().remove(wishlistCliente.get());
-        return new ResponseEntity<>(wishlistCliente.get(), HttpStatus.OK);
+        return wishlistCliente.get();
     }
 
     public Wishlist cadastraProdutoWishlist(Wishlist wishlist, Long idProduto) {
@@ -62,24 +61,20 @@ public class WishlistService {
         return wishlist;
     }
 
-    public ResponseEntity verificaWishlist(Long idCliente, Long idProduto) {
+    public Wishlist verificaWishlist(Long idCliente, Long idProduto) {
         Optional<Wishlist> wishlistCliente = wishlistRepository.findByClienteIdCliente(idCliente);
         if (wishlistCliente.isPresent()) {
-            if (produtoService.produtoExiste(idProduto)) {
-                if (wishlistCliente.get().getListaProdutos().size() < 20) {
-                    if (wishlistService.getByIdClienteIdProduto(idCliente, idProduto) == null) {
-                        return new ResponseEntity<>((cadastraProdutoWishlist(wishlistCliente.get(), idProduto)), HttpStatus.OK);
-                    }
-                    return ResponseEntity.status(HttpStatus.CONFLICT).body("O produto já foi adicionado anteriormente.");
+            produtoService.verificaProdutoExiste(idProduto);
+            if (wishlistCliente.get().getListaProdutos().size() < 20) {
+                if (wishlistService.getByIdClienteIdProduto(idCliente, idProduto) == null) {
+                    return (cadastraProdutoWishlist(wishlistCliente.get(), idProduto));
                 }
-                return ResponseEntity.status(HttpStatus.CONFLICT).body("Já existem 20 itens nessa lista!");
+                throw new WishlistException("O produto já foi adicionado anteriormente.");
             }
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Esse produto não existe!");
+            throw new WishlistException("Já existem 20 itens nessa lista!");
         } else {
-            if (clienteService.clienteExiste(idCliente)) {
-                return new ResponseEntity<>(cadastraProdutoWishlist(criaWishlistByCliente(idCliente), idProduto), HttpStatus.OK);
-            }
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Cliente não existe.");
+            clienteService.verificaClienteExiste(idCliente);
+            return cadastraProdutoWishlist(criaWishlistByCliente(idCliente), idProduto);
         }
     }
 

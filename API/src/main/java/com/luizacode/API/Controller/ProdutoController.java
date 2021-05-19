@@ -26,7 +26,7 @@ public class ProdutoController {
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Deleta um produto cadastrado.")
     @ApiResponse(code = 200, message = "Produto deletado!")
-    public ResponseEntity deletaProduto(@PathVariable(value = "id") Long id) {
+    public Object deletaProduto(@PathVariable(value = "id") Long id) {
         return produtoService.deletaProduto(id);
     }
 
@@ -45,7 +45,7 @@ public class ProdutoController {
 
     @GetMapping("/{id}")
     @ApiOperation(value = "Retorna produto específico através id.")
-    public Object listaProdutoUnico(@PathVariable(value = "id") Long id) {
+    public Produto listaProdutoUnico(@PathVariable(value = "id") Long id) {
         return produtoService.buscaUmProduto(id);
     }
 
