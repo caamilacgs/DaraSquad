@@ -28,12 +28,12 @@ As seguintes ferramentas foram utilizadas na construção do projeto:
 
 &rarr; <a href="https://trello.com/b/GNsUcO4e/dara-squad-wishlist"> Trello </a> - Kanban de tarefas do time.  <br>
 &rarr; <a href="https://www.notion.so/DARA-SQUAD-Luiza-Code-22a6a76568fe493ea40845044adc0760">Notion </a> - Anotações e relatorios do time.  <br>
-&rarr; <a href="https://www.typescriptlang.org/">Java</a> - Linguagem de programação utilizada. <br>
-&rarr; <a href="https://www.typescriptlang.org/">SpringBoot</a> - Frameworks java utlizada no projeto. <br>
-&rarr; <a href="https://reactjs.org">Maven </a> - Gerenciar as dependências do projeto. <br>
-&rarr; <a href="https://www.typescriptlang.org/">Mysql</a> - Banco de dados  <br>
-&rarr; <a href="https://www.typescriptlang.org/">Postman</a> - Teste local das APIs  <br>
-&rarr; <a href="https://www.typescriptlang.org/">Swagger</a> - Documentação da APIs.  <br>
+&rarr; <a href="https://https://www.oracle.com/br/java/technologies/javase-jdk11-downloads.html">Java</a> - Linguagem de programação utilizada. <br>
+&rarr; <a href="https://spring.io/">SpringBoot</a> - Frameworks java utlizada no projeto. <br>
+&rarr; <a href="https://maven.apache.org/">Maven </a> - Gerenciar as dependências do projeto. <br>
+&rarr; <a href="https://www.mysql.com/">Mysql</a> - Banco de dados  <br>
+&rarr; <a href="https://www.postman.com/">Postman</a> - Teste local das APIs  <br>
+&rarr; <a href="https://swagger.io/">Swagger</a> - Documentação da APIs.  <br>
 
 <br>
 
@@ -41,7 +41,7 @@ As seguintes ferramentas foram utilizadas na construção do projeto:
 
 #### > Pre Requsitos para rodar:
 
-* Ter o [Java](https://www.oracle.com/java/technologies/javase-jdk8-downloads.html) instalado (JDK e JRE).
+* Ter o [Java](https://www.oracle.com/br/java/technologies/javase-jdk11-downloads.html) instalado (JDK e JRE).
 * Ter o [Maven](https://maven.apache.org/) instaldo.
 
 #### > Dependencias do Projeto:
