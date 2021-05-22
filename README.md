@@ -14,7 +14,7 @@ Projeto desenvolvido  para formação em JAVA da  <a href="https://corp.gama.aca
  3. [Pré-requisitos e como rodar a aplicação/testes](#requisitos)
  4. [Agradecimentos](#agradecimentos)
  5. [Autoras](#autoras)
-
+ 6. [Apresentação Final](#apresentacao)
 
 <div id='projeto'/>  
 
@@ -236,6 +236,15 @@ $ cd DaraSquad
 </table>
 
 <br>
+
+<div id='apresentacao'/>  
+
+<br>
+
+## :woman_technologist: Apresentação Final
+
+![image](https://user-images.githubusercontent.com/60848932/119228799-16f26f80-baeb-11eb-81aa-776ac056edb0.png)
+
 <br>
 
 <p>by DaraSquad 💜 </p><br>
