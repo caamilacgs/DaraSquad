@@ -243,7 +243,7 @@ $ cd DaraSquad
 
 ## :woman_technologist: Apresentação Final
 
-![image](https://user-images.githubusercontent.com/60848932/119228799-16f26f80-baeb-11eb-81aa-776ac056edb0.png)
+![image](https://user-images.githubusercontent.com/60848932/119231691-8e7acb80-baf8-11eb-975c-631940825cb9.png)
 
 <br>
 
