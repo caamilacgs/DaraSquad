@@ -10,7 +10,7 @@
 - Inserir dentro do arquivo a seguinte configuração:
 
 ```sql
-spring.jpa.hibernate.ddl-auto=create
+spring.jpa.hibernate.ddl-auto=update
 spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5Dialect
 spring.datasource.url=jdbc:mysql://localhost:3306/wishlist
 spring.datasource.username=root
