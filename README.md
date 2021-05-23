@@ -98,7 +98,7 @@ $ cd DaraSquad
 - Pode ser feito pelo swagger: <a href="http://localhost:8080/swagger-ui.html">http://localhost:8080/swagger-ui.html</a><br>
 
 - Ou importanto a collecion no Postman: <a href="https://www.getpostman.com/collections/505906448da72bda396c">https://www.getpostman.com/collections/505906448da72bda396c</a><br>
-    - Veja mais sobre a docucmentação da API <a href="https://github.com/caamilacgs/DaraSquad/tree/main/Documenta%C3%A7%C3%A3o%20do%20Projeto/Collection%20do%20Postman">aqui</a>
+    - Veja mais sobre a docucmentação da API <a href="https://github.com/caamilacgs/DaraSquad/tree/main/Documenta%C3%A7%C3%A3o%20do%20Projeto/Postman%20e%20Swagger">aqui</a>
 
 <div id='agradecimentos'/> 
 
