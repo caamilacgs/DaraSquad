@@ -157,7 +157,7 @@ $ cd DaraSquad
         </p>
     </td>
     <td align="center"><br/>
-        <a href="https://github.com/deborah6150">
+        <a href="https://github.com/deborah">
             <img src="https://avatars.githubusercontent.com/u/53862960?v=4" width="105px;"
                 alt="Imagem da Deborah" /><br /><sub><b>Deborah Caroline</b></sub></a><br><br/>
         <p align="center">
@@ -165,11 +165,11 @@ $ cd DaraSquad
                 <img src="https://user-images.githubusercontent.com/60848932/117540779-2bad0e80-afe7-11eb-8391-2b6661a3efc3.png"
                     width="30px" alt="GitHub" />
             </a>
-            <a href="https://www.linkedin.com/in/deborah-caroline-702690181/">
+            <a href="https://www.linkedin.com/in//">
                 <img src="https://user-images.githubusercontent.com/60848932/117540778-29e34b00-afe7-11eb-8a68-5916e9822145.png"
                     width="30px" alt="Linkedin" />
             </a>
-            <a href="mailto:deborahcaroline615@gmail.com">
+            <a href="mailto:deborahcaroline@gmail.com">
                 <img src="https://user-images.githubusercontent.com/60848932/117541013-3ddb7c80-afe8-11eb-83c2-79827e99ec59.png"
                     width="30px" alt="Email" />
             </a>
